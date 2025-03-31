@@ -3,6 +3,7 @@ import "../globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Inter } from "next/font/google";
 import LeftSideBar from "@/components/layout/LeftSideBar";
+import TopBar from "@/components/layout/TopBar";
 
 export const metadata: Metadata = {
   title: "Ecommerce - Admin Dashboard",
@@ -20,8 +21,11 @@ export default function RootLayout({
         <body
            className={inter.className}
         >
+            <div className="flex max-lg:flex-col text-grey-1">
             <LeftSideBar />
-          {children}
+            <TopBar />
+            <div className="flex-1">{children}</div>
+          </div>
         </body>
       </html>
     </ClerkProvider>
