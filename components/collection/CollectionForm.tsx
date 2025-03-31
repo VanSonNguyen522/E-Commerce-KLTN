@@ -13,9 +13,11 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { Input } from '../ui/input';
+import { Button } from '../ui/button';
 
 const formSchema = z.object({
-    tittle: z.string().min(2).max(20),
+    title: z.string().min(2).max(20),
     description: z.string().min(2).max(500).trim(),
     image: z.string().min(2).max(500),
   })
@@ -37,6 +39,65 @@ const CollectionForm = () => {
     <div className="p-10">
         <p className="text-heading2-bold">Create Collection</p>
         <Separator className="bg-grey-1 mt-4 mb-7" />
+        <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+          <FormField
+            control={form.control}
+            name="title"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Title</FormLabel>
+                <FormControl>
+                  <Input placeholder="Title" {...field} onKeyDown={handleKeyPress} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="description"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Description</FormLabel>
+                <FormControl>
+                  <Textarea placeholder="Description" {...field} rows={5} onKeyDown={handleKeyPress} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="image"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Image</FormLabel>
+                <FormControl>
+                  <ImageUpload
+                    value={field.value ? [field.value] : []}
+                    onChange={(url) => field.onChange(url)}
+                    onRemove={() => field.onChange("")}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <div className="flex gap-10">
+            <Button type="submit" className="bg-blue-1 text-white">
+              Submit
+            </Button>
+            <Button
+              type="button"
+              onClick={() => router.push("/collections")}
+              className="bg-blue-1 text-white"
+            >
+              Discard
+            </Button>
+          </div>
+        </form>
+      </Form>
     </div>
   )
 }
