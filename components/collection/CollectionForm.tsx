@@ -15,6 +15,10 @@ import {
 } from "@/components/ui/form";
 import { Input } from '../ui/input';
 import { Button } from '../ui/button';
+import { Textarea } from '../ui/textarea';
+import ImageUpload from '../custom ui/ImageUpload';
+import { useRouter } from 'next/navigation';
+
 
 const formSchema = z.object({
     title: z.string().min(2).max(20),
@@ -24,16 +28,26 @@ const formSchema = z.object({
 
 const CollectionForm = () => {
 
+  const router = useRouter()
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: initialData
-      ? initialData
-      : {
+    // defaultValues: initialData
+    //   ? initialData
+    //   : {
+    //       title: "",
+    //       description: "",
+    //       image: "",
+    //     },
+    defaultValues: {
           title: "",
           description: "",
           image: "",
         },
   });
+
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    console.log(values);
+  };
 
   return (
     <div className="p-10">
@@ -48,7 +62,7 @@ const CollectionForm = () => {
               <FormItem>
                 <FormLabel>Title</FormLabel>
                 <FormControl>
-                  <Input placeholder="Title" {...field} onKeyDown={handleKeyPress} />
+                  <Input placeholder="Title" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -61,7 +75,7 @@ const CollectionForm = () => {
               <FormItem>
                 <FormLabel>Description</FormLabel>
                 <FormControl>
-                  <Textarea placeholder="Description" {...field} rows={5} onKeyDown={handleKeyPress} />
+                  <Textarea placeholder="Description" {...field} rows={5} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -75,15 +89,16 @@ const CollectionForm = () => {
                 <FormLabel>Image</FormLabel>
                 <FormControl>
                   <ImageUpload
-                    value={field.value ? [field.value] : []}
-                    onChange={(url) => field.onChange(url)}
-                    onRemove={() => field.onChange("")}
+                      value={field.value ? [field.value] : []}
+                      onChange={(url) => field.onChange(url)}
+                      onRemove={() => field.onChange("")}
                   />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
+          
           <div className="flex gap-10">
             <Button type="submit" className="bg-blue-1 text-white">
               Submit
