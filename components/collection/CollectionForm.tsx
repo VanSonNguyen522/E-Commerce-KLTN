@@ -1,6 +1,6 @@
 "use client"
 
-import React from 'react'
+import React, { useState } from 'react'
 import { Separator } from '@/components/ui/separator'
 import {z} from 'zod'
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -18,6 +18,7 @@ import { Button } from '../ui/button';
 import { Textarea } from '../ui/textarea';
 import ImageUpload from '../custom ui/ImageUpload';
 import { useRouter } from 'next/navigation';
+import toast from 'react-hot-toast';
 
 
 const formSchema = z.object({
@@ -29,6 +30,8 @@ const formSchema = z.object({
 const CollectionForm = () => {
 
   const router = useRouter()
+  
+  const [loading, setLoading] = useState(false);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     // defaultValues: initialData
@@ -46,7 +49,27 @@ const CollectionForm = () => {
   });
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    console.log(values);
+    // console.log(values);
+    try{
+
+      setLoading(true);
+
+      const res = await fetch("/api/collections", {
+        method: "POST",
+        body: JSON.stringify(values),
+        // headers: {
+        //   "Content-Type": "application/json",
+        // },
+      });
+      if(res.ok){
+        setLoading(false);
+        toast.success("Collection created successfully")
+        router.push("/collections")};
+      
+    } catch(err) {
+      console.log("[collections_POST]", err);
+      toast.error("Failed to create collection")
+    }
   };
 
   return (

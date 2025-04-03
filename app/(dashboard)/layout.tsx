@@ -4,6 +4,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { Inter } from "next/font/google";
 import LeftSideBar from "@/components/layout/LeftSideBar";
 import TopBar from "@/components/layout/TopBar";
+import { ToasterProvider } from "@/lib/ToasterProvider";
 
 export const metadata: Metadata = {
   title: "Ecommerce - Admin Dashboard",
@@ -21,6 +22,7 @@ export default function RootLayout({
         <body
            className={inter.className}
         >
+            <ToasterProvider />
             <div className="flex max-lg:flex-col text-grey-1">
             <LeftSideBar />
             <TopBar />
