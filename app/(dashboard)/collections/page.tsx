@@ -43,7 +43,7 @@ const Collections = () => {
         </Button>
       </div>
       <Separator className="bg-grey-1 my-4" />
-      <DataTable columns={columns} data={collections} />
+      <DataTable columns={columns} data={collections} searchKey="title"/>
     </div>
   )
 }
