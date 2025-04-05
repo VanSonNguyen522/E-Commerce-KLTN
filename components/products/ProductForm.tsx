@@ -120,7 +120,6 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
       toast.error("Something went wrong! Please try again.");
     }
   };
-
   return loading ? (
     <Loader />
   ) : (
