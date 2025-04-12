@@ -5,6 +5,7 @@ import { auth } from "@clerk/nextjs";
 
 import { NextRequest, NextResponse } from "next/server";
 
+
 export const GET = async (
   req: NextRequest,
   { params }: { params: { productId: string } }
@@ -50,6 +51,7 @@ export const POST = async (
 
     await connectToDB();
 
+    // Lấy ra sản phẩm trước khi cập nhật
     const product = await Product.findById(params.productId);
 
     if (!product) {
@@ -58,6 +60,11 @@ export const POST = async (
         { status: 404 }
       );
     }
+
+    // Lưu lại danh sách collections ban đầu (đây là mảng IDs)
+    const existingCollectionIds = product.collections.map((id: string | CollectionType) => 
+      typeof id === 'string' ? id : id._id.toString()
+    );
 
     const {
       title,
@@ -78,15 +85,18 @@ export const POST = async (
       });
     }
 
-    const addedCollections = collections.filter(
-      (collectionId: string) => !product.collections.includes(collectionId)
-    );
-    // included in new data, but not included in the previous data
+    // Đảm bảo collections là một mảng
+    const newCollections = Array.isArray(collections) ? collections : [];
 
-    const removedCollections = product.collections.filter(
-      (collectionId: string) => !collections.includes(collectionId)
+    // Tính toán các collection được thêm mới
+    const addedCollections = newCollections.filter(
+      (id: string) => !existingCollectionIds.includes(id)
     );
-    // included in previous data, but not included in the new data
+
+    // Tính toán các collection bị gỡ ra
+    const removedCollections = existingCollectionIds.filter(
+      (id: string) => !newCollections.includes(id)
+    );
 
     // Update collections
     await Promise.all([
@@ -113,7 +123,7 @@ export const POST = async (
         description,
         media,
         category,
-        collections,
+        collections: newCollections,
         tags,
         sizes,
         colors,
@@ -158,11 +168,12 @@ export const DELETE = async (
 
     // Update collections
     await Promise.all(
-      product.collections.map((collectionId: string) =>
-        Collection.findByIdAndUpdate(collectionId, {
+      product.collections.map((collectionId: string | CollectionType) => {
+        const id = typeof collectionId === 'string' ? collectionId : collectionId._id.toString();
+        return Collection.findByIdAndUpdate(id, {
           $pull: { products: product._id },
-        })
-      )
+        });
+      })
     );
 
     return new NextResponse(JSON.stringify({ message: "Product deleted" }), {
