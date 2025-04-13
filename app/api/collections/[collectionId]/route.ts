@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@clerk/nextjs";
 import { connectToDB } from "@/lib/mongoDB";
 import Collection from "@/lib/models/collections";
+import Product from "@/lib/models/products";
 
 export const GET = async (
     req: NextRequest,
@@ -10,7 +11,7 @@ export const GET = async (
     try {
       await connectToDB();
   
-      const collection = await Collection.findById(params.collectionId);
+      const collection = await Collection.findById(params.collectionId).populate({ path: "products", model: Product });
   
       if (!collection) {
         return new NextResponse(
@@ -92,3 +93,5 @@ export const DELETE = async (
       return new NextResponse("Internal error", { status: 500 });
     }
   };
+
+  export const dynamic = "force-dynamic";
