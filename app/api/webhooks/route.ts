@@ -37,7 +37,7 @@ export const POST = async (req: NextRequest) => {
                 country: session?.customer_details?.address?.country,
               }
 
-              console.log("[webhook_POST] shippingAddress:", shippingAddress);
+            //   console.log("[webhook_POST] shippingAddress:", shippingAddress);
 
             const retrieveSession = await stripe.checkout.sessions.retrieve(
                 session.id,
@@ -62,10 +62,11 @@ export const POST = async (req: NextRequest) => {
             const newOrder = new Order({
                 customerClerkId: customerInfo.clerkId,
                 products: orderItems,
-                shippingAddress,
+                customer_details: shippingAddress,
+                shippingRate: session?.shipping_cost?.shipping_rate,
                 totalAmount: session.amount_total ? session.amount_total : 0,
             })
-            console.log("[webhook_POST] newOrder before save:", newOrder);
+            // console.log("[webhook_POST] newOrder before save:", newOrder);
 
             await newOrder.save()
 
