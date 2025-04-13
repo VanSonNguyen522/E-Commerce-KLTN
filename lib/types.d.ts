@@ -36,3 +36,9 @@ type CollectionType = {
     size: string;
     quantity: number;
   }
+
+  type CustomerType = {
+    clerkId: string;
+    name: string;
+    email: string;
+  }
