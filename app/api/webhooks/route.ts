@@ -5,7 +5,7 @@ import { connectToDB } from "@/lib/mongoDB";
 import Order from "@/lib/models/order";
 import Customer from "@/lib/models/customer";
 
-export const stripe = new Stripe(process.env.NEXT_PUBLIC_STRIPE_SERECT_KEY!, {
+const stripe = new Stripe(process.env.NEXT_PUBLIC_STRIPE_SERECT_KEY!, {
     typescript: true,
 });
 
