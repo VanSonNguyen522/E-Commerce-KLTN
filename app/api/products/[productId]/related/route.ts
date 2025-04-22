@@ -26,7 +26,7 @@ export const GET = async (req: NextRequest, { params }: { params: { productId: s
 
     return NextResponse.json(relatedProducts, { status: 200 })
   } catch (err) {
-    console.log("[related_GET", err)
+    console.log("[related_GET]", err)
     return new NextResponse("Internal Server Error", { status: 500 })
   }
 }
