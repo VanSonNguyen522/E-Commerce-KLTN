@@ -1,7 +1,11 @@
 import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
 
-const stripe = new Stripe(process.env.NEXT_PUBLIC_STRIPE_SERECT_KEY !, {
+// export const stripe = new Stripe(process.env.NEXT_PUBLIC_STRIPE_SERECT_KEY !, {
+//     typescript: true,
+// });
+
+ const stripe = new Stripe(process.env.NEXT_PUBLIC_STRIPE_SERECT_KEY !, {
     typescript: true,
 });
 
