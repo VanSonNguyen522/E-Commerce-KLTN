@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "echo \"No tests yet\""
   },
   "dependencies": {
     "@clerk/nextjs": "^4.31.8",
