@@ -1,0 +1,3 @@
+_id,clerkId,name,email,orders[0],orders[1],orders[2],orders[3],orders[4],orders[5],createdAt,updatedAt,__v
+67fa940fca2334d466cb575a,user_2vc1MNOUMQ2rysonGoEMNbE8KX4,Nguyễn Sơn,nvs72307@gmail.com,67fb218ae129f98e148fa918,67fb21fde129f98e148fa923,67fb2246e129f98e148fa92f,6808521e093f4d02477452b6,68102d589a09120c8cc00a6f,68102e969a09120c8cc00ac8,2025-04-12T16:25:51.977Z,2025-04-12T16:25:51.977Z,19
+67fb2314e129f98e148fa942,user_2vefe4ByXSW6Ar5xmi8CDF6sQ0K,Nguyễn Sơn,nvs72307@gmail.com,67fb2314e129f98e148fa93d,67fb2a47e129f98e148fa9ec,,,,,2025-04-13T02:36:04.413Z,2025-04-13T02:36:04.413Z,1
