@@ -42,3 +42,11 @@ type CollectionType = {
     name: string;
     email: string;
   }
+
+  type CommentType = {
+  _id: string;
+  name: string;
+  content: string;
+  createdAt: string;
+  productId: { title: string };
+}
