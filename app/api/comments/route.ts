@@ -10,6 +10,39 @@ const corsHeaders = {
   "Access-Control-Allow-Credentials": "true",
 };
 
+// export const GET = async (req: NextRequest) => {
+//   try {
+//     await connectToDB();
+
+//     const productId = req.nextUrl.searchParams.get("productId");
+
+//     let comments;
+//     if (productId) {
+//       if (!mongoose.Types.ObjectId.isValid(productId)) {
+//         return new NextResponse(JSON.stringify({ error: "Invalid productId" }), {
+//           status: 400,
+//           headers: corsHeaders,
+//         });
+//       }
+//       comments = await Comment.find({ productId })
+//         .populate("productId", "title")
+//         .sort({ createdAt: -1 });
+//     } else {
+//       comments = await Comment.find()
+//         .populate("productId", "title")
+//         .sort({ createdAt: -1 });
+//     }
+
+//     return NextResponse.json(comments, { status: 200, headers: corsHeaders });
+//   } catch (err) {
+//     console.log("[comments_GET]", err);
+//     return new NextResponse(JSON.stringify({ error: "Failed to fetch comments" }), {
+//       status: 500,
+//       headers: corsHeaders,
+//     });
+//   }
+// };
+
 export const GET = async (req: NextRequest) => {
   try {
     await connectToDB();
