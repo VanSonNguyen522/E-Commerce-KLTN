@@ -22,6 +22,14 @@ const orderSchema = new mongoose.Schema({
   },
   shippingRate: String,
   totalAmount: Number,
+
+  //status for order
+  status: {
+    type: String,
+    enum: ["processing", "delivered", "cancel", "refunding", "NotRefund", "refunded"],
+    default: "processing",
+  },
+
   createdAt: {
     type: Date,
     default: Date.now,

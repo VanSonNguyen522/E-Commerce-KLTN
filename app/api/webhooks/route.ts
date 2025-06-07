@@ -69,6 +69,7 @@ export const POST = async (req: NextRequest) => {
                 customer_details: shippingAddress,
                 shippingRate: session?.shipping_cost?.shipping_rate,
                 totalAmount: session.amount_total ? session.amount_total : 0,
+                status: "processing", // default status (refund)
             })
             // console.log("[webhook_POST] newOrder before save:", newOrder);
 
