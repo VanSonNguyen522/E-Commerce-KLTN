@@ -1,14 +1,50 @@
 import { NextRequest, NextResponse } from "next/server";
 import { connectToDB } from "@/lib/mongoDB";
 import { Comment } from "@/lib/models/comments";
+import Product   from "@/lib/models/products";
 import mongoose from "mongoose";
+// import Product from '@/lib/models/products';
 
 const corsHeaders = {
-  "Access-Control-Allow-Origin": "http://localhost:3001",
+  // "Access-Control-Allow-Origin": "http://localhost:3001",
+  "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Methods": "GET, POST, DELETE, OPTIONS",
   "Access-Control-Allow-Headers": "Content-Type, Authorization",
   "Access-Control-Allow-Credentials": "true",
 };
+
+// export const GET = async (req: NextRequest) => {
+//   try {
+//     await connectToDB();
+
+//     const productId = req.nextUrl.searchParams.get("productId");
+
+//     let comments;
+//     if (productId) {
+//       if (!mongoose.Types.ObjectId.isValid(productId)) {
+//         return new NextResponse(JSON.stringify({ error: "Invalid productId" }), {
+//           status: 400,
+//           headers: corsHeaders,
+//         });
+//       }
+//       comments = await Comment.find({ productId })
+//         .populate("productId", "title")
+//         .sort({ createdAt: -1 });
+//     } else {
+//       comments = await Comment.find()
+//         .populate("productId", "title")
+//         .sort({ createdAt: -1 });
+//     }
+
+//     return NextResponse.json(comments, { status: 200, headers: corsHeaders });
+//   } catch (err) {
+//     console.log("[comments_GET]", err);
+//     return new NextResponse(JSON.stringify({ error: "Failed to fetch comments" }), {
+//       status: 500,
+//       headers: corsHeaders,
+//     });
+//   }
+// };
 
 // export const GET = async (req: NextRequest) => {
 //   try {
@@ -57,16 +93,36 @@ export const GET = async (req: NextRequest) => {
           headers: corsHeaders,
         });
       }
-      comments = await Comment.find({ productId })
-        .populate("productId", "title")
-        .sort({ createdAt: -1 });
+      comments = await Comment.find({ productId }).sort({ createdAt: -1 });
     } else {
-      comments = await Comment.find()
-        .populate("productId", "title")
-        .sort({ createdAt: -1 });
+      comments = await Comment.find().sort({ createdAt: -1 });
     }
 
-    return NextResponse.json(comments, { status: 200, headers: corsHeaders });
+    // Manual populate để tránh lỗi schema
+    const populatedComments = await Promise.all(
+      comments.map(async (comment) => {
+        try {
+          const product = await Product.findById(comment.productId);
+          return {
+            ...comment.toObject(),
+            productId: {
+              _id: comment.productId,
+              title: product?.title || "Unknown Product"
+            }
+          };
+        } catch (err) {
+          return {
+            ...comment.toObject(),
+            productId: {
+              _id: comment.productId,
+              title: "Unknown Product"
+            }
+          };
+        }
+      })
+    );
+
+    return NextResponse.json(populatedComments, { status: 200, headers: corsHeaders });
   } catch (err) {
     console.log("[comments_GET]", err);
     return new NextResponse(JSON.stringify({ error: "Failed to fetch comments" }), {

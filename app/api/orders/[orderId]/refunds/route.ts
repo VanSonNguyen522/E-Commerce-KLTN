@@ -18,35 +18,51 @@ export async function OPTIONS(request: NextRequest) {
   });
 }
 
-export async function GET(req: NextRequest, { params }: { params: { orderId: string } }) {
+// export async function GET(req: NextRequest, { params }: { params: { orderId: string } }) {
+//   try {
+//     await connectToDB();
+
+//     const refund = await Refund.findOne({ orderId: params.orderId }).populate({
+//       path: "orderId",
+//       model: Order
+//     });
+
+//     if (!refund) {
+//       return new NextResponse("Refund request not found", { 
+//         status: 404,
+//         headers: corsHeaders 
+//       });
+//     }
+
+//     return NextResponse.json(
+//       { refund }, 
+//       { 
+//         status: 200,
+//         headers: corsHeaders 
+//       }
+//     );
+//   } catch (err) {
+//     console.error("[REFUND_GET]", err);
+//     return new NextResponse("Internal error", { 
+//       status: 500,
+//       headers: corsHeaders 
+//     });
+//   }
+// }
+
+export async function GET(req: NextRequest) {
   try {
     await connectToDB();
-
-    const refund = await Refund.findOne({ orderId: params.orderId }).populate({
+    const refunds = await Refund.find().populate({
       path: "orderId",
-      model: Order
-    });
-
-    if (!refund) {
-      return new NextResponse("Refund request not found", { 
-        status: 404,
-        headers: corsHeaders 
-      });
-    }
-
-    return NextResponse.json(
-      { refund }, 
-      { 
-        status: 200,
-        headers: corsHeaders 
-      }
-    );
+      model: Order,
+      select: "_id customerClerkId products totalAmount createdAt"
+    }).sort({ createdAt: -1 });
+    
+    return NextResponse.json(refunds, { status: 200 });
   } catch (err) {
-    console.error("[REFUND_GET]", err);
-    return new NextResponse("Internal error", { 
-      status: 500,
-      headers: corsHeaders 
-    });
+    console.error("[refunds_GET]", err);
+    return new NextResponse("Internal error", { status: 500 });
   }
 }
 

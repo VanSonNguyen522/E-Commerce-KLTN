@@ -50,3 +50,29 @@ type CollectionType = {
   createdAt: string;
   productId: { title: string };
 }
+
+type RefundStatus = "pending" | "approved" | "rejected";
+
+type RefundType = {
+  _id: string;
+  orderId: string;
+  customerClerkId: string;
+  reason: string;
+  status: RefundStatus;
+  createdAt: string;
+};
+
+type ExtendedRefundType = {
+  _id: string;
+  orderId: {
+    _id: string;
+    customerClerkId: string;
+    products: ProductType[];
+    totalAmount: number;
+    createdAt: string;
+  };
+  customerClerkId: string;
+  reason: string;
+  status: "pending" | "approved" | "rejected";
+  createdAt: string;
+};

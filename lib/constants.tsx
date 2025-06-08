@@ -4,7 +4,8 @@ import {
     ShoppingBag,
     Tag,
     UsersRound,
-    MessageCircle
+    MessageCircle,
+    TicketX
   } from "lucide-react";
   
   export const navLinks = [
@@ -37,5 +38,10 @@ import {
       url: "/comments",
       icon: <MessageCircle />,
       label: "Comments",
+    },
+        {
+      url: "/refunds",
+      icon: <TicketX />,
+      label: "Refunds",
     },
   ];
