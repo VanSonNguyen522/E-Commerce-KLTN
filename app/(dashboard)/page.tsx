@@ -22,15 +22,15 @@ export default async function Home() {
   return (
     <div className="p-6 md:p-8 max-w-7xl mx-auto bg-slate-50 min-h-screen">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-slate-800">Analytics Dashboard</h1>
-        <p className="text-slate-500 mt-1">Monitor your business performance and sales</p>
+        <h1 className="text-3xl font-bold text-slate-800">Bảng quản lý và thống kê</h1>
+        <p className="text-slate-500 mt-1">Thống kê và quản lý việc kinh doanh</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <Card className="shadow-md border border-slate-200 overflow-hidden">
           <CardHeader className="bg-gradient-to-r from-blue-500/10 to-cyan-500/5 border-b border-slate-200 py-4">
             <div className="flex justify-between items-center">
-              <CardTitle className="text-slate-700 text-lg">Total Revenue</CardTitle>
+              <CardTitle className="text-slate-700 text-lg">Tổng thu nhập</CardTitle>
               <div className="bg-blue-500 p-2 rounded-lg shadow-sm">
                 <CircleDollarSign className="h-5 w-5 text-white" />
               </div>
@@ -40,14 +40,14 @@ export default async function Home() {
             <p className="text-3xl font-bold text-slate-800">{formatCurrency(totalRevenue)} VND</p>
           </CardContent>
           <CardFooter className="pt-0 pb-4">
-            <p className="text-xs text-slate-500">All time revenue across all orders</p>
+            <p className="text-xs text-slate-500">Tất cả thu nhập từ đơn hàng thành công</p>
           </CardFooter>
         </Card>
 
         <Card className="shadow-md border border-slate-200 overflow-hidden">
           <CardHeader className="bg-gradient-to-r from-indigo-500/10 to-purple-500/5 border-b border-slate-200 py-4">
             <div className="flex justify-between items-center">
-              <CardTitle className="text-slate-700 text-lg">Total Orders</CardTitle>
+              <CardTitle className="text-slate-700 text-lg">Tổng đơn hàng</CardTitle>
               <div className="bg-indigo-500 p-2 rounded-lg shadow-sm">
                 <ShoppingBag className="h-5 w-5 text-white" />
               </div>
@@ -57,14 +57,14 @@ export default async function Home() {
             <p className="text-3xl font-bold text-slate-800">{totalOrders}</p>
           </CardContent>
           <CardFooter className="pt-0 pb-4">
-            <p className="text-xs text-slate-500">Total orders processed</p>
+            <p className="text-xs text-slate-500">Tổng số đơn hàng đã giao thành công</p>
           </CardFooter>
         </Card>
 
         <Card className="shadow-md border border-slate-200 overflow-hidden">
           <CardHeader className="bg-gradient-to-r from-green-500/10 to-emerald-500/5 border-b border-slate-200 py-4">
             <div className="flex justify-between items-center">
-              <CardTitle className="text-slate-700 text-lg">Total Customers</CardTitle>
+              <CardTitle className="text-slate-700 text-lg">Tổng khách hàng</CardTitle>
               <div className="bg-green-500 p-2 rounded-lg shadow-sm">
                 <UserRound className="h-5 w-5 text-white" />
               </div>
@@ -74,7 +74,7 @@ export default async function Home() {
             <p className="text-3xl font-bold text-slate-800">{totalCustomers}</p>
           </CardContent>
           <CardFooter className="pt-0 pb-4">
-            <p className="text-xs text-slate-500">Registered customer accounts</p>
+            <p className="text-xs text-slate-500">Tổng số khách hàng đã mua hàng.</p>
           </CardFooter>
         </Card>
       </div>
@@ -83,8 +83,8 @@ export default async function Home() {
         <CardHeader className="bg-gradient-to-r from-purple-500/10 to-indigo-500/5 border-b border-slate-200">
           <div className="flex justify-between items-center">
             <div>
-              <CardTitle className="text-slate-700 text-xl">Monthly Sales Performance</CardTitle>
-              <p className="text-slate-500 text-sm mt-1">Revenue trends over the past year</p>
+              <CardTitle className="text-slate-700 text-xl">Doanh thu theo tháng</CardTitle>
+              <p className="text-slate-500 text-sm mt-1">Doanh thu theo tháng của năm</p>
             </div>
             <div className="bg-purple-500 p-2 rounded-lg shadow-sm">
               <BarChart3 className="h-5 w-5 text-white" />
@@ -95,7 +95,7 @@ export default async function Home() {
           <SalesChart data={graphData} />
         </CardContent>
         <CardFooter className="border-t border-slate-200 bg-slate-50 text-xs text-slate-500">
-          Last updated: {new Date().toLocaleString()}
+          Ngày cuối cập nhật: {new Date().toLocaleString()}
         </CardFooter>
       </Card>
     </div>

@@ -37,8 +37,8 @@ const Collections = () => {
   return (
     <div className="p-6 md:p-8 max-w-7xl mx-auto bg-slate-50 min-h-screen">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-slate-800">Collection Catalog</h1>
-        <p className="text-slate-500 mt-1">Manage your product collections</p>
+        <h1 className="text-3xl font-bold text-slate-800">Quản lý Bộ sưu tập</h1>
+        <p className="text-slate-500 mt-1">Quản lý bộ sưu tập và sản phẩm ở trong đó.</p>
       </div>
 
       {loading ? (
@@ -54,14 +54,14 @@ const Collections = () => {
                   <FolderOpen className="text-white h-6 w-6" />
                 </div>
                 <div>
-                  <CardTitle className="text-2xl font-bold text-slate-800">Collections</CardTitle>
-                  <p className="text-slate-500 text-sm mt-1">Manage your product collections</p>
+                  <CardTitle className="text-2xl font-bold text-slate-800">Bộ sưu tập</CardTitle>
+                  <p className="text-slate-500 text-sm mt-1">Quản lý các bộ sưu tập</p>
                 </div>
               </div>
               
               <div className="flex items-center gap-3">
                 <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200 px-3 py-1">
-                  {collections.length} Collections
+                  {collections.length} Bộ sưu tập
                 </Badge>
                 <Button 
                   variant="outline" 
@@ -77,7 +77,7 @@ const Collections = () => {
                   onClick={() => router.push("/collections/new")}
                 >
                   <Plus className="h-4 w-4 mr-2" />
-                  Create Collection
+                  Tạo bộ sưu tập mới
                 </Button>
               </div>
             </div>
@@ -93,8 +93,8 @@ const Collections = () => {
           
           <CardFooter className="border-t border-slate-200 bg-slate-50 py-3 px-6">
             <div className="flex justify-between w-full text-sm text-slate-500">
-              <span>Showing {collections.length} collections</span>
-              <span>Last updated: {new Date().toLocaleString()}</span>
+              <span>Showing {collections.length} bộ sưu tập</span>
+              <span>Ngày cuối cập nhật: {new Date().toLocaleString()}</span>
             </div>
           </CardFooter>
         </Card>

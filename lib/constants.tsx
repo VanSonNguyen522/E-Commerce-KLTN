@@ -12,36 +12,36 @@ import {
     {
       url: "/",
       icon: <LayoutDashboard />,
-      label: "Dashboard",
+      label: "Bảng điều khiển",
     },
     {
       url: "/collections",
       icon: <Shapes />,
-      label: "Collections",
+      label: "Bộ sưu tập",
     },
     {
       url: "/products",
       icon: <Tag />,
-      label: "Products",
+      label: "Sản phẩm",
     },
     {
       url: "/orders",
       icon: <ShoppingBag />,
-      label: "Orders",
+      label: "Đơn hàng",
     },
     {
       url: "/customers",
       icon: <UsersRound />,
-      label: "Customers",
+      label: "Khách hàng",
     },
     {
       url: "/comments",
       icon: <MessageCircle />,
-      label: "Comments",
+      label: "Bình luận",
     },
         {
       url: "/refunds",
       icon: <TicketX />,
-      label: "Refunds",
+      label: "Hoàn trả",
     },
   ];

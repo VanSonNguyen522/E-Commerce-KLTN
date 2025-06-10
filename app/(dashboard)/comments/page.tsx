@@ -99,8 +99,8 @@ const Comments = () => {
   return (
     <div className="p-6 md:p-8 max-w-7xl mx-auto bg-slate-50 min-h-screen">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-slate-800">Comments Management</h1>
-        <p className="text-slate-500 mt-1">Manage product comments and reviews</p>
+        <h1 className="text-3xl font-bold text-slate-800">Quản lý Bình luận khách hàng</h1>
+        <p className="text-slate-500 mt-1">Quản lý bình luận của sản phẩm và giới thiệu</p>
       </div>
 
       {loading ? (
@@ -116,14 +116,14 @@ const Comments = () => {
                   <MessageSquare className="text-white h-6 w-6" />
                 </div>
                 <div>
-                  <CardTitle className="text-2xl font-bold text-slate-800">Comments</CardTitle>
-                  <p className="text-slate-500 text-sm mt-1">View and manage customer feedback</p>
+                  <CardTitle className="text-2xl font-bold text-slate-800">Bình luận</CardTitle>
+                  <p className="text-slate-500 text-sm mt-1">Xem và quản lý bình luận từ khách hàng.</p>
                 </div>
               </div>
               
               <div className="flex items-center gap-3">
                 <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200 px-3 py-1">
-                  {filteredComments.length} Comments
+                  {filteredComments.length} Bình luận
                 </Badge>
                 <Button 
                   variant="outline" 
@@ -153,7 +153,7 @@ const Comments = () => {
                 <div className="bg-slate-100 p-4 rounded-full mb-4">
                   <MessageSquare className="h-8 w-8 text-slate-400" />
                 </div>
-                <h3 className="text-lg font-medium text-slate-700 mb-2">No comments found</h3>
+                <h3 className="text-lg font-medium text-slate-700 mb-2">Không bình luận nào được tìm thấy</h3>
                 <p className="text-slate-500">
                   {searchTerm ? "Try adjusting your search terms." : "No comments have been posted yet."}
                 </p>
@@ -204,8 +204,8 @@ const Comments = () => {
           
           <CardFooter className="border-t border-slate-200 bg-slate-50 py-3 px-6">
             <div className="flex justify-between w-full text-sm text-slate-500">
-              <span>Showing {filteredComments.length} of {comments.length} comments</span>
-              <span>Last updated: {new Date().toLocaleString()}</span>
+              <span>Showing {filteredComments.length} of {comments.length} bình luận</span>
+              <span>Ngày cuối cập nhật: {new Date().toLocaleString()}</span>
             </div>
           </CardFooter>
         </Card>

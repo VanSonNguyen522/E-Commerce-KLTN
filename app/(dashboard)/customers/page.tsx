@@ -16,8 +16,8 @@ const Customers = async () => {
   return (
     <div className="p-6 md:p-8 max-w-7xl mx-auto bg-slate-50 min-h-screen">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-slate-800">Customer Management</h1>
-        <p className="text-slate-500 mt-1">View and manage your customer database</p>
+        <h1 className="text-3xl font-bold text-slate-800">Quản lý người dùng</h1>
+        <p className="text-slate-500 mt-1">Xem và quản lý người dùng.</p>
       </div>
 
       <Card className="border border-slate-200 shadow-md overflow-hidden bg-white">
@@ -28,14 +28,14 @@ const Customers = async () => {
                 <Users className="text-white h-6 w-6" />
               </div>
               <div>
-                <CardTitle className="text-2xl font-bold text-slate-800">Customers</CardTitle>
-                <p className="text-slate-500 text-sm mt-1">All registered customers in your system</p>
+                <CardTitle className="text-2xl font-bold text-slate-800">Khách hàng</CardTitle>
+                <p className="text-slate-500 text-sm mt-1">Danh sách khách hàng đã mua hàng trong hệ thống.</p>
               </div>
             </div>
             
             <div className="flex items-center gap-3">
               <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200 px-3 py-1">
-                {customers.length} Customers
+                {customers.length} Khách hàng
               </Badge>
               <Button 
                 variant="outline" 
@@ -59,8 +59,8 @@ const Customers = async () => {
         
         <CardFooter className="border-t border-slate-200 bg-slate-50 py-3 px-6">
           <div className="flex justify-between w-full text-sm text-slate-500">
-            <span>Showing {customers.length} customers</span>
-            <span>Last updated: {new Date().toLocaleString()}</span>
+            <span>Showing {customers.length} khách hàng</span>
+            <span>Ngày cuối cập nhật: {new Date().toLocaleString()}</span>
           </div>
         </CardFooter>
       </Card>

@@ -47,7 +47,7 @@ const TopBar = () => {
                 </div>
                 )}
                 <UserButton />
-            <p>Edit Profile</p>
+            <p>Tài khoản</p>
         </div>
     </div>
   )

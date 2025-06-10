@@ -37,8 +37,8 @@ const Products = () => {
   return (
     <div className="p-6 md:p-8 max-w-7xl mx-auto bg-slate-50 min-h-screen">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-slate-800">Product Catalog</h1>
-        <p className="text-slate-500 mt-1">Manage your product inventory</p>
+        <h1 className="text-3xl font-bold text-slate-800">Quản lý sản phẩm</h1>
+        <p className="text-slate-500 mt-1">Quản lý các sản phẩm trong hệ thống</p>
       </div>
 
       {loading ? (
@@ -54,14 +54,14 @@ const Products = () => {
                   <ShoppingBag className="text-white h-6 w-6" />
                 </div>
                 <div>
-                  <CardTitle className="text-2xl font-bold text-slate-800">Products</CardTitle>
-                  <p className="text-slate-500 text-sm mt-1">Manage your products catalog</p>
+                  <CardTitle className="text-2xl font-bold text-slate-800">Sản phẩm</CardTitle>
+                  <p className="text-slate-500 text-sm mt-1">Quản lý các sản phẩm của cửa hàng</p>
                 </div>
               </div>
               
               <div className="flex items-center gap-3">
                 <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200 px-3 py-1">
-                  {products.length} Products
+                  {products.length} Sản phẩm
                 </Badge>
                 <Button 
                   variant="outline" 
@@ -77,7 +77,7 @@ const Products = () => {
                   onClick={() => router.push("/products/new")}
                 >
                   <Plus className="h-4 w-4 mr-2" />
-                  Create Product
+                  Thêm sản phẩm
                 </Button>
               </div>
             </div>
@@ -93,8 +93,8 @@ const Products = () => {
           
           <CardFooter className="border-t border-slate-200 bg-slate-50 py-3 px-6">
             <div className="flex justify-between w-full text-sm text-slate-500">
-              <span>Showing {products.length} products</span>
-              <span>Last updated: {new Date().toLocaleString()}</span>
+              <span>Showing {products.length} sản phẩm</span>
+              <span>Ngày cuối cập nhập: {new Date().toLocaleString()}</span>
             </div>
           </CardFooter>
         </Card>

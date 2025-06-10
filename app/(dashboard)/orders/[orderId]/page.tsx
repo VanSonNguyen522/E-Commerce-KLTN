@@ -266,8 +266,8 @@ const OrderDetails = ({ params }: OrderDetailsProps) => {
   return (
     <div className="p-6 md:p-8 max-w-7xl mx-auto bg-slate-50 min-h-screen">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-slate-800">Order Details</h1>
-        <p className="text-slate-500 mt-1">Order #{orderDetails._id.slice(0, 8)}...</p>
+        <h1 className="text-3xl font-bold text-slate-800">Thông tin đơn hàng</h1>
+        <p className="text-slate-500 mt-1">Đơn hàng #{orderDetails._id.slice(0, 8)}...</p>
       </div>
       
       <Card className="border border-slate-200 shadow-md overflow-hidden bg-white mb-6">
@@ -279,14 +279,14 @@ const OrderDetails = ({ params }: OrderDetailsProps) => {
               </div>
               <div>
                 <CardTitle className="text-2xl font-bold text-slate-800">Thông tin đơn hàng</CardTitle>
-                <p className="text-slate-500 text-sm mt-1">Order and customer details</p>
+                <p className="text-slate-500 text-sm mt-1">Thông tin đơn hàng và khách hàng.</p>
               </div>
             </div>
             
             <div className="flex items-center gap-3">
               {getStatusBadge(orderDetails.status)}
               <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200 px-3 py-1">
-                {orderDetails.products.length} Products
+                {orderDetails.products.length} Sản phẩm
               </Badge>
             </div>
           </div>
@@ -363,7 +363,7 @@ const OrderDetails = ({ params }: OrderDetailsProps) => {
             </div>
             <div>
               <CardTitle className="text-2xl font-bold text-slate-800">Các sản phẩm trong đơn</CardTitle>
-              <p className="text-slate-500 text-sm mt-1">Products in this order</p>
+              <p className="text-slate-500 text-sm mt-1">Danh sách sản phẩm trong đơn hàng</p>
             </div>
           </div>
         </CardHeader>
@@ -376,7 +376,7 @@ const OrderDetails = ({ params }: OrderDetailsProps) => {
         
         <CardFooter className="border-t border-slate-200 bg-slate-50 py-3 px-6">
           <div className="text-sm text-slate-500">
-            <span>Total Items: {orderDetails.products.length}</span>
+            <span>Tổng hàng: {orderDetails.products.length}</span>
           </div>
         </CardFooter>
       </Card>

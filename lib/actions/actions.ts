@@ -5,7 +5,8 @@ import { connectToDB } from "../mongoDB"
 export const getTotalSales = async () => {
   await connectToDB();
   // Chỉ lấy những đơn hàng có status là "delivered"
-  const orders = await Order.find({ status: "delivered" });
+  // const orders = await Order.find({ status: "delivered" });
+  const orders = await Order.find({ status: { $in: ["delivered", "NotRefund", "refunding"] } });
   const totalOrders = orders.length;
   const totalRevenue = orders.reduce((acc, order) => acc + order.totalAmount, 0)
   return { totalOrders, totalRevenue }
@@ -21,7 +22,8 @@ export const getTotalCustomers = async () => {
 export const getSalesPerMonth = async () => {
   await connectToDB()
   // Chỉ lấy những đơn hàng có status là "delivered"
-  const orders = await Order.find({ status: "delivered" })
+  // const orders = await Order.find({ status: "delivered" })
+  const orders = await Order.find({ status: { $in: ["delivered", "NotRefund", "refunding"] } });
 
   const salesPerMonth = orders.reduce((acc, order) => {
     const monthIndex = new Date(order.createdAt).getMonth(); // 0 for January --> 11 for December
@@ -40,29 +42,29 @@ export const getSalesPerMonth = async () => {
   return graphData
 }
 
-// Optional: Nếu bạn muốn giữ lại hàm lấy tất cả orders (bao gồm cả chưa delivered)
-export const getAllSales = async () => {
-  await connectToDB();
-  const orders = await Order.find();
-  const totalOrders = orders.length;
-  const totalRevenue = orders.reduce((acc, order) => acc + order.totalAmount, 0)
-  return { totalOrders, totalRevenue }
-}
+// // Optional: Nếu bạn muốn giữ lại hàm lấy tất cả orders (bao gồm cả chưa delivered)
+// export const getAllSales = async () => {
+//   await connectToDB();
+//   const orders = await Order.find();
+//   const totalOrders = orders.length;
+//   const totalRevenue = orders.reduce((acc, order) => acc + order.totalAmount, 0)
+//   return { totalOrders, totalRevenue }
+// }
 
-export const getAllSalesPerMonth = async () => {
-  await connectToDB()
-  const orders = await Order.find()
+// export const getAllSalesPerMonth = async () => {
+//   await connectToDB()
+//   const orders = await Order.find()
 
-  const salesPerMonth = orders.reduce((acc, order) => {
-    const monthIndex = new Date(order.createdAt).getMonth();
-    acc[monthIndex] = (acc[monthIndex] || 0) + order.totalAmount;
-    return acc
-  }, {})
+//   const salesPerMonth = orders.reduce((acc, order) => {
+//     const monthIndex = new Date(order.createdAt).getMonth();
+//     acc[monthIndex] = (acc[monthIndex] || 0) + order.totalAmount;
+//     return acc
+//   }, {})
 
-  const graphData = Array.from({ length: 12}, (_, i) => {
-    const month = new Intl.DateTimeFormat('en-US', { month: 'short' }).format(new Date(0, i))
-    return { name: month, sales: salesPerMonth[i] || 0 }
-  })
+//   const graphData = Array.from({ length: 12}, (_, i) => {
+//     const month = new Intl.DateTimeFormat('en-US', { month: 'short' }).format(new Date(0, i))
+//     return { name: month, sales: salesPerMonth[i] || 0 }
+//   })
 
-  return graphData
-}
+//   return graphData
+// }
