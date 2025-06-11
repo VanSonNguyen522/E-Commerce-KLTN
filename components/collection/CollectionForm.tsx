@@ -82,11 +82,11 @@ const CollectionForm: React.FC<CollectionFormProps> = ({ initialData }) => {
     <div className="p-10">
       {initialData ? (
         <div className="flex items-center justify-between">
-          <p className="text-heading2-bold">Edit Collection</p>
+          <p className="text-heading2-bold">Chỉnh sửa Bộ sưu tập</p>
           <Delete id={initialData._id} item='collection' />
         </div>
       ) : (
-        <p className="text-heading2-bold">Create Collection</p>
+        <p className="text-heading2-bold">Tạo bộ sưu tập</p>
       )}
         <Separator className="bg-grey-1 mt-4 mb-7" />
         <Form {...form}>
@@ -96,7 +96,7 @@ const CollectionForm: React.FC<CollectionFormProps> = ({ initialData }) => {
             name="title"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Title</FormLabel>
+                <FormLabel>Tên bộ sưu tập</FormLabel>
                 <FormControl>
                   <Input placeholder="Title" {...field} onKeyDown={handleKeyPress}/>
                 </FormControl>
@@ -109,7 +109,7 @@ const CollectionForm: React.FC<CollectionFormProps> = ({ initialData }) => {
             name="description"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Description</FormLabel>
+                <FormLabel>Miêu tả</FormLabel>
                 <FormControl>
                   <Textarea placeholder="Description" {...field} rows={5} onKeyDown={handleKeyPress}/>
                 </FormControl>
@@ -122,7 +122,7 @@ const CollectionForm: React.FC<CollectionFormProps> = ({ initialData }) => {
             name="image"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Image</FormLabel>
+                <FormLabel>Hình ảnh</FormLabel>
                 <FormControl>
                   <ImageUpload
                       value={field.value ? [field.value] : []}
@@ -137,14 +137,14 @@ const CollectionForm: React.FC<CollectionFormProps> = ({ initialData }) => {
           
           <div className="flex gap-10">
             <Button type="submit" className="bg-blue-1 text-white">
-              Submit
+              Lưu
             </Button>
             <Button
               type="button"
               onClick={() => router.push("/collections")}
               className="bg-blue-1 text-white"
             >
-              Discard
+              Hủy bỏ
             </Button>
           </div>
         </form>

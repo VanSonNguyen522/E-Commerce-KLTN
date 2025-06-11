@@ -52,7 +52,8 @@ export async function OPTIONS() {
   return new NextResponse(null, {
     status: 200,
     headers: {
-      'Access-Control-Allow-Origin': 'http://localhost:3001',
+      // 'Access-Control-Allow-Origin': 'http://localhost:3001',
+      'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'PUT, OPTIONS',
       'Access-Control-Allow-Headers': 'Content-Type, Authorization',
       'Access-Control-Allow-Credentials': 'true',
@@ -69,7 +70,8 @@ export async function PUT(req: NextRequest, { params }: { params: { orderId: str
         status: 400,
         headers: {
           'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': 'http://localhost:3001',
+          // 'Access-Control-Allow-Origin': 'http://localhost:3001',
+          'Access-Control-Allow-Origin': '*',
           'Access-Control-Allow-Credentials': 'true',
         }
       });
@@ -83,7 +85,8 @@ export async function PUT(req: NextRequest, { params }: { params: { orderId: str
         status: 404,
         headers: {
           'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': 'http://localhost:3001',
+          // 'Access-Control-Allow-Origin': 'http://localhost:3001',
+          'Access-Control-Allow-Origin': '*',
           'Access-Control-Allow-Credentials': 'true',
         }
       });
@@ -94,7 +97,8 @@ export async function PUT(req: NextRequest, { params }: { params: { orderId: str
         status: 403,
         headers: {
           'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': 'http://localhost:3001',
+          // 'Access-Control-Allow-Origin': 'http://localhost:3001',
+          'Access-Control-Allow-Origin': '*',
           'Access-Control-Allow-Credentials': 'true',
         }
       });
@@ -111,7 +115,8 @@ export async function PUT(req: NextRequest, { params }: { params: { orderId: str
         status: 400,
         headers: {
           'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': 'http://localhost:3001',
+          // 'Access-Control-Allow-Origin': 'http://localhost:3001',
+          'Access-Control-Allow-Origin': '*',
           'Access-Control-Allow-Credentials': 'true',
         }
       });
@@ -124,7 +129,8 @@ export async function PUT(req: NextRequest, { params }: { params: { orderId: str
       status: 200,
       headers: {
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': 'http://localhost:3001',
+        // 'Access-Control-Allow-Origin': 'http://localhost:3001',
+        'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Credentials': 'true',
       }
     });
@@ -134,7 +140,8 @@ export async function PUT(req: NextRequest, { params }: { params: { orderId: str
       status: 500,
       headers: {
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': 'http://localhost:3001',
+        // 'Access-Control-Allow-Origin': 'http://localhost:3001',
+        'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Credentials': 'true',
       }
     });
