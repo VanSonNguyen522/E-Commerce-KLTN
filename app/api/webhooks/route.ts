@@ -1,17 +1,18 @@
 
 import { NextRequest, NextResponse } from "next/server";
-import Stripe from "stripe";
+// import Stripe from "stripe";
 import { connectToDB } from "@/lib/mongoDB";
 import Order from "@/lib/models/order";
 import Customer from "@/lib/models/customer";
+import { stripe } from "@/lib/stripe";
 
 // export const stripe = new Stripe(process.env.NEXT_PUBLIC_STRIPE_SERECT_KEY!, {
 //     typescript: true,
 // });
 
- const stripe = new Stripe(process.env.NEXT_PUBLIC_STRIPE_SERECT_KEY!, {
-    typescript: true,
-});
+//  const stripe = new Stripe(process.env.NEXT_PUBLIC_STRIPE_SERECT_KEY!, {
+//     typescript: true,
+// });
 
 export const POST = async (req: NextRequest) => {
     try {
